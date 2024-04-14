@@ -2,17 +2,31 @@
 using PassIn.Application.UseCases.Events.Delete;
 using PassIn.Application.UseCases.Events.Register;
 using PassIn.Application.UseCases.Events.Search;
+using PassIn.Application.UseCases.Events.Update;
 using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
-using PassIn.Infrastructure.Entities;
 
 
 namespace PassIn.Api.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class EventsController : ControllerBase
     {
+        /// <summary>
+        /// Register an event
+        /// </summary>
+        /// <remarks>
+        /// Example:
+        /// {
+        /// "title": "Curso de Api C#",
+        /// "details": "Aprenda constrir uma Api C# do ZERO.",
+        /// "maximumAttendees": 130
+        /// }
+        /// }
+        /// </remarks>
+        /// <returns> Returns the ID of the registered event.</returns>
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisteredEventJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
@@ -50,6 +64,21 @@ namespace PassIn.Api.Controllers
                        
             return Ok("Successfully removed!");
                
+        }
+
+
+        [HttpPut]
+        [Route("{id}")]
+        [ProducesResponseType(typeof(ResponseDelEventJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+
+        public IActionResult UpdateEventById([FromQuery ] RequestUpdateEventJson request, [FromRoute] Guid id)
+        {
+            var useCase = new UpdateEventByIdUseCase();
+            var response = useCase.Execute(id, request);
+
+            return Ok("Successfully removed!");
+
         }
     }
 }
