@@ -40,6 +40,15 @@ namespace PassIn.Api.Controllers
             return Created(string.Empty, response);
         }
 
+
+        /// <summary>
+        /// Search an event by id.
+        /// </summary>
+        /// <remarks>
+        /// Example:
+        /// { "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+        /// </remarks>
+        /// <returns> Returns the data of the registered event.</returns>
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(typeof(ResponseEventJson), StatusCodes.Status200OK)]
@@ -52,6 +61,29 @@ namespace PassIn.Api.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        ///Search list of registered events.
+        /// </summary>
+        /// <returns> Returns a list of the registered events.</returns>
+        [HttpGet]        
+        [ProducesResponseType(typeof(ResponseEventJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+        // [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)] 
+        public IActionResult GetEventAll()
+        {
+            var useCase = new GetEventAllUseCase();
+            var response = useCase.Execute().ToList();
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Remove an event by id.
+        /// </summary>
+        /// <remarks>
+        /// Example:
+        /// { "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+        /// </remarks>
+        /// <returns> Returns the data of the registered event.</returns>
         [HttpDelete]
         [Route("{id}")]
         [ProducesResponseType(typeof(ResponseDelEventJson), StatusCodes.Status200OK)]
@@ -66,7 +98,14 @@ namespace PassIn.Api.Controllers
                
         }
 
-
+        /// <summary>
+        /// Update an event by id.
+        /// </summary>
+        /// <remarks>
+        /// Example:
+        /// { "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+        /// </remarks>
+        /// <returns> Returns the data of the updated event.</returns>
         [HttpPut]
         [Route("{id}")]
         [ProducesResponseType(typeof(ResponseDelEventJson), StatusCodes.Status200OK)]
@@ -77,7 +116,7 @@ namespace PassIn.Api.Controllers
             var useCase = new UpdateEventByIdUseCase();
             var response = useCase.Execute(id, request);
 
-            return Ok("Successfully removed!");
+            return Ok("Successfully updated!");
 
         }
     }
