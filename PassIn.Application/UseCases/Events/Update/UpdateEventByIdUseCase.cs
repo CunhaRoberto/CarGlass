@@ -12,17 +12,20 @@ namespace PassIn.Application.UseCases.Events.Update
             Validate(request);
 
             var dbContext = new PassInDbContext();
+            var entity = dbContext.Events.Find(eventId);
 
-            var entity = new Infrastructure.Entities.Event
             {
-                Title = request.Title,
-                Details = request.Details,
-                Maximum_Attendees = request.MaximumAttendees,
-                Slug = request.Title.ToLower().Replace(" ", "-")
-            };
+                if (!string.IsNullOrWhiteSpace(request.Title))               
+                {
+                    entity.Title = request.Title;                    
+                };               
+                entity.Details = request.Details;
+                entity.Maximum_Attendees = request.MaximumAttendees;
+            }
+           
 
-            dbContext.Events.Add(entity);
-            dbContext.UpdateRange();
+           // dbContext.Events.Add(entity);
+            dbContext.SaveChanges();
 
             return new ResponseRegisteredEventJson
             {
