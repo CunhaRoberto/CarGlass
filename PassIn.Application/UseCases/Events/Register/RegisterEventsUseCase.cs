@@ -19,7 +19,7 @@ namespace PassIn.Application.UseCases.Events.Register
               Details = request.Details,
               Maximum_Attendees = request.MaximumAttendees,
               Slug = request.Title.ToLower().Replace(" ", "-"),
-              
+              Created_At = DateTime.UtcNow,
               
 
             };

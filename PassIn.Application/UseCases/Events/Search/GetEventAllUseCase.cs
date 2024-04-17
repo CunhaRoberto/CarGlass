@@ -27,7 +27,9 @@ namespace PassIn.Application.UseCases.Events.Search
                     Title = entity.Title,
                     Details = entity.Details,
                     Slug = entity.Slug,
-                    MaximumAttendees = entity.Maximum_Attendees
+                    MaximumAttendees = entity.Maximum_Attendees,
+                    Created_At = entity.Created_At,
+                    Updated_At = entity.Updated_At, 
                 }).ToList();
 
                 return responseEvents; 

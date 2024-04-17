@@ -22,6 +22,7 @@ namespace PassIn.Application.UseCases.Events.Search
                 Details = entity.Details,
                 Slug = entity.Slug,
                 MaximumAttendees = entity.Maximum_Attendees,
+                Created_At = DateTime.UtcNow
                 
             };
         }

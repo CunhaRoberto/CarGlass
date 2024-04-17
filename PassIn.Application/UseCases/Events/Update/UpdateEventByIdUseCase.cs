@@ -8,11 +8,15 @@ namespace PassIn.Application.UseCases.Events.Update
     public class UpdateEventByIdUseCase
     {
         public ResponseRegisteredEventJson Execute(Guid eventId, RequestUpdateEventJson request)
-        {
-            Validate(request);
-
+        {           
             var dbContext = new PassInDbContext();
             var entity = dbContext.Events.Find(eventId);
+
+            if (entity is null){
+                throw new NotFoundException("An events with id dont exist.");
+            }
+
+            Validate(request);
 
             {
                 if (!string.IsNullOrWhiteSpace(request.Title))               
@@ -29,12 +33,10 @@ namespace PassIn.Application.UseCases.Events.Update
                 {
                     entity.Maximum_Attendees = request.MaximumAttendees;
                 }
-                  
-                 
+                  entity.Updated_At = DateTime.UtcNow;
+                
             }
            
-
-           // dbContext.Events.Add(entity);
             dbContext.SaveChanges();
 
             return new ResponseRegisteredEventJson
@@ -49,21 +51,18 @@ namespace PassIn.Application.UseCases.Events.Update
         {
             var retorno = new RequestUpdateEventJson();
 
+            if(string.IsNullOrWhiteSpace(request.Details) 
+                || string.IsNullOrWhiteSpace(request.Title)
+                || request.MaximumAttendees == 0
+                )
+            {
+                throw new ErrorOrValidationExcepition("No data was provided to make the change.");
+            }
+
             if (request.MaximumAttendees < 0)
             {
                 throw new ErrorOrValidationExcepition("The MaximumAttendees is invalid.");
             }
-
-            // if (string.IsNullOrWhiteSpace(request.Title))
-            //{
-            //throw new ErrorOrValidationExcepition("The Title is invalid.");
-            //}
-
-            //if (string.IsNullOrWhiteSpace(request.Details))
-            //{
-            //throw new ErrorOrValidationExcepition("The Details is invalid.");
-            //}
-
 
         }
     }
