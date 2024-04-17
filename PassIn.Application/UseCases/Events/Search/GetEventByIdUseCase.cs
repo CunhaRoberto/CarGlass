@@ -20,8 +20,9 @@ namespace PassIn.Application.UseCases.Events.Search
                 Id = entity.Id,
                 Title = entity.Title,
                 Details = entity.Details,
-                MaximumAttendees = -1
-
+                Slug = entity.Slug,
+                MaximumAttendees = entity.Maximum_Attendees,
+                
             };
         }
     }

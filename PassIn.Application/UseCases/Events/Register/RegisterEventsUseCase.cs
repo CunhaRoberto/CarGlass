@@ -18,10 +18,13 @@ namespace PassIn.Application.UseCases.Events.Register
               Title = request.Title,
               Details = request.Details,
               Maximum_Attendees = request.MaximumAttendees,
-              Slug = request.Title.ToLower().Replace(" ", "-")
+              Slug = request.Title.ToLower().Replace(" ", "-"),
+              
+              
+
             };
 
-            dbContext.Events.Add(entity);
+            dbContext.Events.Add(entity);  
             dbContext.SaveChanges();
 
             return new ResponseRegisteredEventJson 

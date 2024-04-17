@@ -17,10 +17,20 @@ namespace PassIn.Application.UseCases.Events.Update
             {
                 if (!string.IsNullOrWhiteSpace(request.Title))               
                 {
-                    entity.Title = request.Title;                    
-                };               
-                entity.Details = request.Details;
-                entity.Maximum_Attendees = request.MaximumAttendees;
+                    entity.Title = request.Title;
+                    entity.Slug = request.Title.ToLower().Replace(" ", "-");
+                };
+
+                if (!string.IsNullOrWhiteSpace(request.Details))
+                {
+                    entity.Details = request.Details;
+                }
+                if (request.MaximumAttendees > 0)
+                {
+                    entity.Maximum_Attendees = request.MaximumAttendees;
+                }
+                  
+                 
             }
            
 
@@ -37,20 +47,23 @@ namespace PassIn.Application.UseCases.Events.Update
 
         private void Validate(RequestUpdateEventJson request)
         {
-            if (request.MaximumAttendees < 1)
+            var retorno = new RequestUpdateEventJson();
+
+            if (request.MaximumAttendees < 0)
             {
                 throw new ErrorOrValidationExcepition("The MaximumAttendees is invalid.");
             }
 
-            if (string.IsNullOrWhiteSpace(request.Title))
-            {
-                throw new ErrorOrValidationExcepition("The Title is invalid.");
-            }
+            // if (string.IsNullOrWhiteSpace(request.Title))
+            //{
+            //throw new ErrorOrValidationExcepition("The Title is invalid.");
+            //}
 
-            if (string.IsNullOrWhiteSpace(request.Details))
-            {
-                throw new ErrorOrValidationExcepition("The Details is invalid.");
-            }
+            //if (string.IsNullOrWhiteSpace(request.Details))
+            //{
+            //throw new ErrorOrValidationExcepition("The Details is invalid.");
+            //}
+
 
         }
     }
