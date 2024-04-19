@@ -36,6 +36,12 @@ namespace PassIn.Api.Fiters
                 context.Result = new BadRequestObjectResult(new ResponseErrorJson(context.Exception.Message)); ;
             }
 
+            if (context.Exception is RecordAlreadyExistsException)
+            {
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Conflict;
+                context.Result = new ConflictObjectResult(new ResponseErrorJson(context.Exception.Message)); ;
+            }
+
 
         }
 

@@ -11,24 +11,22 @@ namespace PassIn.Application.UseCases.Events.Search
         {
             _dbCcontext = new PassInDbContext();
         }
-        public List<ResponseEventJson> Execute(Guid eventId)
+        public List<ResponseAttendeeJson> Execute(Guid eventId)
         {
-            var entities = _dbCcontext.Events.ToList();
+            var result = _dbCcontext.Attendees.ToList();
 
-            if (!entities.Any())
+            if (!result.Any())
             {
                 throw new NotFoundException("No events found.");
             }
 
-            var responseEvents = entities.Select(entity => new ResponseEventJson
+            var responseEvents = result.Select(entity => new ResponseAttendeeJson
             {
                 Id = entity.Id,
-                Title = entity.Title,
-                Details = entity.Details,
-                Slug = entity.Slug,
-                MaximumAttendees = entity.Maximum_Attendees,
-                Created_At = entity.Created_At,
-                Updated_At = entity.Updated_At,
+                Name = entity.Name, 
+                Email = entity.Email,   
+                CreatedAt = entity.Created_At
+                
             }).ToList();
 
             return responseEvents;

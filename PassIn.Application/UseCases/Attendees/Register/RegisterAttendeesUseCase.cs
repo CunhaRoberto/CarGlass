@@ -42,6 +42,8 @@ namespace PassIn.Application.UseCases.Events.Register
         {
             var eventExist = _dbContext.Events.Any(ev => ev.Id == eventId);
 
+            request.Email= request.Email.Trim();
+
             if (!eventExist)
             {
                 throw new NotFoundException("Event with the specified id does not exist.");
@@ -52,7 +54,7 @@ namespace PassIn.Application.UseCases.Events.Register
                 throw new ErrorOrValidationExcepition("The Name is invalid.");
             }
 
-            if (string.IsNullOrWhiteSpace(request.Email) || !IsValidEmail(request.Email.Trim()) )
+            if (string.IsNullOrWhiteSpace(request.Email) || !IsValidEmail(request.Email) )
             {
                 throw new ErrorOrValidationExcepition("The Details is invalid.");
             }
@@ -60,7 +62,7 @@ namespace PassIn.Application.UseCases.Events.Register
             var attendeeRegistred = _dbContext.Attendees.Any(at => at.Email.Equals(request.Email) && at.Event_Id == eventId);
             if (attendeeRegistred)
             {
-                throw new ErrorOrValidationExcepition("Ja cadastrado no evento.");
+                throw new RecordAlreadyExistsException("Attendees already registered for the event.");
             }
         }
 

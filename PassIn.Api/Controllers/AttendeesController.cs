@@ -4,10 +4,11 @@ using PassIn.Application.UseCases.Events.Register;
 using PassIn.Application.UseCases.Events.Search;
 using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
+using PassIn.Exceptions;
 
 namespace PassIn.Api.Controllers
 {
-    [Route("api/[controller]/{eventId}")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AttendeesController : ControllerBase
     {
@@ -24,8 +25,11 @@ namespace PassIn.Api.Controllers
         /// 
         /// <returns> </returns>
         [HttpPost]
+        [Route("{eventId}")]
         [ProducesResponseType(typeof(ResponseRegisteredAttendeeEventJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status409Conflict)]
+
 
         public IActionResult Register([FromRoute]Guid eventId ,[FromBody]RequestRegisterAttendessJson request)
         {
@@ -36,6 +40,23 @@ namespace PassIn.Api.Controllers
             return Created(string.Empty, response);
         }
 
-      
+
+        /// <summary>
+        ///Search list of registered events.
+        /// </summary>
+        /// <returns> Returns a list of the registered events.</returns>
+        [HttpGet]
+        [Route("{eventId}")]
+        [ProducesResponseType(typeof(ResponseEventJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+
+        // [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)] 
+        public IActionResult GetAttendesByEventId([FromRoute] Guid eventId)     
+        {
+            var useCase = new GetAttendeesByEventIdUseCase();
+            var response = useCase.Execute(eventId).ToList();
+            return Ok(response);
+        }
+
     }
 }
