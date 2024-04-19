@@ -30,7 +30,7 @@ namespace PassIn.Application.UseCases.Events.Register
             _dbContext.Attendees.Add(entity);    
             _dbContext.SaveChanges();
 
-            return new ResponseRegisteredAttendesJson
+            return new ResponseRegisteredAttendeeEventJson
             {
                 Id = entity.Id,
             };

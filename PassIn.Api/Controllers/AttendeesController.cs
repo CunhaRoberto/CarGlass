@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PassIn.Application.UseCases.Events.Register;
+using PassIn.Application.UseCases.Events.Search;
 using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
 
@@ -14,12 +15,13 @@ namespace PassIn.Api.Controllers
         /// Register attendees in event
         /// </summary>
         /// <remarks>
-        /// Example:
+        /// Examples 
         /// {
         /// "name": "Roberto Cunha",
         /// "email": "rcunha@live.com"
-        /// }
+        /// }, eventId : c2825351-98b7-44bf-a96d-5e5c23d8ad87
         /// </remarks>
+        /// 
         /// <returns> </returns>
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisteredAttendeeEventJson), StatusCodes.Status201Created)]
@@ -33,5 +35,7 @@ namespace PassIn.Api.Controllers
 
             return Created(string.Empty, response);
         }
+
+      
     }
 }

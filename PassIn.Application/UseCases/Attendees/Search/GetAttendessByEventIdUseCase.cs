@@ -4,9 +4,9 @@ using PassIn.Infrastructure;
 
 namespace PassIn.Application.UseCases.Events.Search
 {
-    public class GetEventAllUseCase 
+    public class GetAttendeesByEventIdUseCase   
     {
-        public List<ResponseEventJson> Execute()
+        public List<ResponseEventJson> Execute(Guid eventId)
         {
             using (var dbContext = new PassInDbContext())
             {
