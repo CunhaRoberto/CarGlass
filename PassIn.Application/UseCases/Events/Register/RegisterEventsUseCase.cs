@@ -7,11 +7,16 @@ namespace PassIn.Application.UseCases.Events.Register
 {
     public class RegisterEventsUseCase
     {
+        private readonly PassInDbContext _dbContext;
+
+        public RegisterEventsUseCase()
+        {
+            _dbContext = new PassInDbContext();
+        }
         public ResponseRegisteredEventJson Execute(RequestEventJson request)
         {
             Validate(request);
 
-            var dbContext = new PassInDbContext();
 
             var entity = new Infrastructure.Entities.Event 
             {
@@ -24,8 +29,8 @@ namespace PassIn.Application.UseCases.Events.Register
 
             };
 
-            dbContext.Events.Add(entity);  
-            dbContext.SaveChanges();
+            _dbContext.Events.Add(entity);  
+            _dbContext.SaveChanges();
 
             return new ResponseRegisteredEventJson 
             { 

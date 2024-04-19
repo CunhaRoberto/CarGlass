@@ -7,10 +7,15 @@ namespace PassIn.Application.UseCases.Events.Update
 {
     public class UpdateEventByIdUseCase
     {
+        private readonly PassInDbContext _dbContext;
+        public UpdateEventByIdUseCase()
+        {
+            _dbContext = new PassInDbContext();
+        }
         public ResponseRegisteredEventJson Execute(Guid eventId, RequestUpdateEventJson request)
         {           
-            var dbContext = new PassInDbContext();
-            var entity = dbContext.Events.Find(eventId);
+            
+            var entity = _dbContext.Events.Find(eventId);
 
             if (entity is null){
                 throw new NotFoundException("An events with id dont exist.");
@@ -36,15 +41,13 @@ namespace PassIn.Application.UseCases.Events.Update
                   entity.Updated_At = DateTime.UtcNow;
                 
             }
-           
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
 
             return new ResponseRegisteredEventJson
             {
                 Id = entity.Id,
 
             };
-
         }
 
         private void Validate(RequestUpdateEventJson request)

@@ -1,38 +1,33 @@
 ﻿using PassIn.Communication.Responses;
 using PassIn.Exceptions;
 using PassIn.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PassIn.Application.UseCases.Events.Delete
 {
     public class DeleteEventByIdUseCase
     {
-        public ResponseRegisteredEventJson Execute(Guid id)   
+        private readonly PassInDbContext _dbContext;
+        public DeleteEventByIdUseCase()
         {
-            using (var dbContext = new PassInDbContext())
-            {
-                var entity = dbContext.Events.Find(id);
-
-                if (entity is null)
-                {
-                    throw new NotFoundException("Event with the specified id does not exist.");
-                }
-                
-                dbContext.Events.Remove(entity);
-                dbContext.SaveChanges();
-
-                return new ResponseRegisteredEventJson
-                {
-                    Id = entity.Id,
-
-                };
-
-            }
+            _dbContext = new PassInDbContext();
         }
+        public ResponseRegisteredEventJson Execute(Guid id)
+        {
+            var entity = _dbContext.Events.Find(id);
 
+            if (entity is null)
+            {
+                throw new NotFoundException("Event with the specified id does not exist.");
+            }
+
+            _dbContext.Events.Remove(entity);
+            _dbContext.SaveChanges();
+
+            return new ResponseRegisteredEventJson
+            {
+                Id = entity.Id,
+            };
+        }
     }
 }
+

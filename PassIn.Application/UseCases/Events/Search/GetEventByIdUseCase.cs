@@ -1,4 +1,6 @@
-﻿using PassIn.Communication.Responses;
+﻿using Microsoft.Extensions.Logging;
+using PassIn.Communication.Requests;
+using PassIn.Communication.Responses;
 using PassIn.Exceptions;
 using PassIn.Infrastructure;
 
@@ -6,12 +8,17 @@ namespace PassIn.Application.UseCases.Events.Search
 {
     public class GetEventByIdUseCase
     {
+        private readonly PassInDbContext _dbContext;    
+        public GetEventByIdUseCase()
+        {
+            _dbContext = new PassInDbContext();           
+        }
         public ResponseEventJson Execute(Guid id)
         {
-            var dbContext = new PassInDbContext();
-            var entity = dbContext.Events.Find(id);
+           
+            var entity = _dbContext.Events.Find(id);
             
-            if(entity is null)
+            if (entity is null)
             {
                 throw new NotFoundException("An events with id dont exist.");
             }
@@ -26,5 +33,7 @@ namespace PassIn.Application.UseCases.Events.Search
                 
             };
         }
+        
+
     }
 }
