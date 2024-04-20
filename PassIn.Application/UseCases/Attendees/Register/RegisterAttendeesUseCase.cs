@@ -40,11 +40,11 @@ namespace PassIn.Application.UseCases.Events.Register
         private void Validate(Guid eventId, RequestRegisterAttendessJson request)           
 
         {
-            var eventExist = _dbContext.Events.Any(ev => ev.Id == eventId);
+            //var eventExist = _dbContext.Events.Any(ev => ev.Id == eventId); verifica se o evento existe
+           
+            var EventEntity = _dbContext.Events.Find(eventId);
 
-            request.Email= request.Email.Trim();
-
-            if (!eventExist)
+            if (EventEntity is null) 
             {
                 throw new NotFoundException("Event with the specified id does not exist.");
             }
@@ -62,7 +62,14 @@ namespace PassIn.Application.UseCases.Events.Register
             var attendeeRegistred = _dbContext.Attendees.Any(at => at.Email.Equals(request.Email) && at.Event_Id == eventId);
             if (attendeeRegistred)
             {
-                throw new RecordAlreadyExistsException("Attendees already registered for the event.");
+                throw new ConflictException("Attendees already registered for the event.");
+            }
+
+            var attendesNumber = _dbContext.Attendees.Count(attendess => attendess.Event_Id == eventId);
+
+            if (attendesNumber >= EventEntity.Maximum_Attendees)
+            {
+                throw new ConflictException("The event has no vacancies.");
             }
         }
 

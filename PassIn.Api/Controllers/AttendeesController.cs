@@ -8,7 +8,7 @@ using PassIn.Exceptions;
 
 namespace PassIn.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/attendees")]
     [ApiController]
     public class AttendeesController : ControllerBase
     {

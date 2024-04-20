@@ -1,8 +1,8 @@
 ﻿namespace PassIn.Exceptions
 {
-    public class RecordAlreadyExistsException : PassInExeption
+    public class ConflictException : PassInExeption
     {
-        public RecordAlreadyExistsException(string message) : base(message)     
+        public ConflictException(string message) : base(message)        
         {
             
         }

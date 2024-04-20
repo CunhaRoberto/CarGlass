@@ -1,4 +1,5 @@
-﻿using PassIn.Communication.Requests;
+﻿using Microsoft.Extensions.Logging;
+using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
 using PassIn.Exceptions;
 using PassIn.Infrastructure;
@@ -55,8 +56,8 @@ namespace PassIn.Application.UseCases.Events.Update
             var retorno = new RequestUpdateEventJson();
 
             if(string.IsNullOrWhiteSpace(request.Details) 
-                || string.IsNullOrWhiteSpace(request.Title)
-                || request.MaximumAttendees == 0
+                && string.IsNullOrWhiteSpace(request.Title)
+                && request.MaximumAttendees == 0
                 )
             {
                 throw new ErrorOrValidationExcepition("No data was provided to make the change.");
@@ -65,7 +66,9 @@ namespace PassIn.Application.UseCases.Events.Update
             if (request.MaximumAttendees < 0)
             {
                 throw new ErrorOrValidationExcepition("The MaximumAttendees is invalid.");
+
             }
+            var entity = _dbContext.Events.Find(id);
 
         }
     }

@@ -10,7 +10,7 @@ using PassIn.Communication.Responses;
 namespace PassIn.Api.Controllers
 {
 
-    [Route("api/[controller]")]
+    [Route("api/events")]
     [ApiController]
     public class EventsController : ControllerBase
     {
