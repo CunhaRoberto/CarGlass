@@ -20,19 +20,28 @@ namespace PassIn.Application.UseCases.Events.Search
                 throw new NotFoundException("No events found.");
             }
 
-            var responseEvents = entities.Select(entity => new ResponseEventJson
+            var responseEvents = new List<ResponseEventJson>();
+
+            foreach (var evento in entities)
             {
-                Id = entity.Id,
-                Title = entity.Title,
-                Details = entity.Details,
-                Slug = entity.Slug,
-                MaximumAttendees = entity.Maximum_Attendees,
-                Created_At = entity.Created_At,
-                Updated_At = entity.Updated_At,
-            }).ToList();
+                var attendeesAmount = _dbContext.Attendees.Count(participante => participante.Event_Id.Equals(evento.Id));
+
+                responseEvents.Add(new ResponseEventJson
+                {
+                    Id = evento.Id,
+                    Title = evento.Title,
+                    Details = evento.Details,
+                    Slug = evento.Slug,
+                    MaximumAttendees = evento.Maximum_Attendees,
+                    AttendeesAmount = attendeesAmount, 
+                    Created_At = evento.Created_At,
+                    Updated_At = evento.Updated_At,
+                });
+            }
 
             return responseEvents;
         }
     }
+
 }
 

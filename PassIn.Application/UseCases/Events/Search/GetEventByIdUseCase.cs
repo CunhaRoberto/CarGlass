@@ -3,6 +3,7 @@ using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
 using PassIn.Exceptions;
 using PassIn.Infrastructure;
+using PassIn.Infrastructure.Entities;
 
 namespace PassIn.Application.UseCases.Events.Search
 {
@@ -17,7 +18,8 @@ namespace PassIn.Application.UseCases.Events.Search
         {
            
             var entity = _dbContext.Events.Find(id);
-            
+            var attendeesNumber = _dbContext.Attendees.Count(attendees => attendees.Event_Id == id);
+
             if (entity is null)
             {
                 throw new NotFoundException("An events with id dont exist.");
@@ -29,6 +31,7 @@ namespace PassIn.Application.UseCases.Events.Search
                 Details = entity.Details,
                 Slug = entity.Slug,
                 MaximumAttendees = entity.Maximum_Attendees,
+                AttendeesAmount = attendeesNumber,
                 Created_At =entity.Created_At,
                 Updated_At =entity.Updated_At,
                 

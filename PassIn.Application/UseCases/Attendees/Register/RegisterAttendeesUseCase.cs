@@ -43,7 +43,6 @@ namespace PassIn.Application.UseCases.Events.Register
             //var eventExist = _dbContext.Events.Any(ev => ev.Id == eventId); verifica se o evento existe
            
             var EventEntity = _dbContext.Events.Find(eventId);
-
             if (EventEntity is null) 
             {
                 throw new NotFoundException("Event with the specified id does not exist.");
@@ -65,11 +64,10 @@ namespace PassIn.Application.UseCases.Events.Register
                 throw new ConflictException("Attendees already registered for the event.");
             }
 
-            var attendesNumber = _dbContext.Attendees.Count(attendess => attendess.Event_Id == eventId);
-
-            if (attendesNumber >= EventEntity.Maximum_Attendees)
+            var attendeesAmount = _dbContext.Attendees.Count(attendess => attendess.Event_Id == eventId);
+            if (attendeesAmount == EventEntity.Maximum_Attendees)
             {
-                throw new ConflictException("The event has no vacancies.");
+                throw new ConflictException($"There are no vacancies for the eventId = {eventId} .");
             }
         }
 

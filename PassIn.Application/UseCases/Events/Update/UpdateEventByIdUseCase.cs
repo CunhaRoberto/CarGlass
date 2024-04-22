@@ -3,6 +3,7 @@ using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
 using PassIn.Exceptions;
 using PassIn.Infrastructure;
+using PassIn.Infrastructure.Entities;
 
 namespace PassIn.Application.UseCases.Events.Update
 {
@@ -14,15 +15,15 @@ namespace PassIn.Application.UseCases.Events.Update
             _dbContext = new PassInDbContext();
         }
         public ResponseRegisteredEventJson Execute(Guid eventId, RequestUpdateEventJson request)
-        {           
-            
+        {
+            var retorno = new RequestUpdateEventJson();
+
             var entity = _dbContext.Events.Find(eventId);
+            var attendeesNumber  = _dbContext.Attendees.Count(attendees => attendees.Event_Id == eventId);
 
-            if (entity is null){
-                throw new NotFoundException("An events with id dont exist.");
-            }
+           
 
-            Validate(request);
+            Validate(request, attendeesNumber, entity);
 
             {
                 if (!string.IsNullOrWhiteSpace(request.Title))               
@@ -51,9 +52,15 @@ namespace PassIn.Application.UseCases.Events.Update
             };
         }
 
-        private void Validate(RequestUpdateEventJson request)
+        private void Validate(RequestUpdateEventJson request, int attendeesNumber, Event entity)
         {
-            var retorno = new RequestUpdateEventJson();
+            if (entity is null)
+            {
+                throw new NotFoundException("An events with id dont exist.");
+            }
+
+
+            
 
             if(string.IsNullOrWhiteSpace(request.Details) 
                 && string.IsNullOrWhiteSpace(request.Title)
@@ -68,7 +75,12 @@ namespace PassIn.Application.UseCases.Events.Update
                 throw new ErrorOrValidationExcepition("The MaximumAttendees is invalid.");
 
             }
-            var entity = _dbContext.Events.Find(id);
+
+            if (request.MaximumAttendees < attendeesNumber)
+            {
+                throw new ConflictException($"There are alredy {attendeesNumber} attendees registered!");
+            }
+
 
         }
     }
