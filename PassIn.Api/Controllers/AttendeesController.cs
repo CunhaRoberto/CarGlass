@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PassIn.Application.UseCases.Attendees.Delete;
+using PassIn.Application.UseCases.Events.Delete;
 using PassIn.Application.UseCases.Events.Register;
 using PassIn.Application.UseCases.Events.Search;
 using PassIn.Communication.Requests;
@@ -56,6 +58,28 @@ namespace PassIn.Api.Controllers
             var useCase = new GetAttendeesByEventIdUseCase();
             var response = useCase.Execute(eventId).ToList();
             return Ok(response);
+        }
+
+        /// <summary>
+        /// Remove an attendees by id.
+        /// </summary>
+        /// <remarks>
+        /// Example:
+        ///  id = 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        /// </remarks>
+        /// <returns> </returns>
+        [HttpDelete]
+        [Route("{id}")]
+        [ProducesResponseType(typeof(ResponseDelEventJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+
+        public IActionResult DeleteAttendeesById([FromRoute] Guid id)
+        {
+            var useCase = new DeleteAttendeesByIdUseCase();
+            var response = useCase.Execute(id);
+
+            return Ok("Successfully removed!");
+
         }
 
     }
