@@ -18,13 +18,7 @@ namespace PassIn.Application.UseCases.Attendees.Delete
         }
         public ResponseRegisteredEventJson Execute(Guid id)
         {
-            var entity = _dbContext.Attendees.Find(id);
-
-            if (entity is null)
-            {
-                throw new NotFoundException("Attendees with the specified id does not exist.");
-            }
-
+            var entity = _dbContext.Attendees.Find(id) ?? throw new NotFoundException(ExceptionMsg.NotFound);
             _dbContext.Attendees.Remove(entity);
             _dbContext.SaveChanges();
 
