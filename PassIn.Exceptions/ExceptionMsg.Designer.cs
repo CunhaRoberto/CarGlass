@@ -61,11 +61,11 @@ namespace PassIn.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Arquivo não localizado.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Participante não localizado.
         /// </summary>
-        public static string NotFound {
+        public static string NotFoundAttendees {
             get {
-                return ResourceManager.GetString("NotFound", resourceCulture);
+                return ResourceManager.GetString("NotFoundAttendees", resourceCulture);
             }
         }
     }
