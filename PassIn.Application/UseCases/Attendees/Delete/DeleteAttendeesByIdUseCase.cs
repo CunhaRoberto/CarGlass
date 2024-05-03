@@ -19,6 +19,8 @@ namespace PassIn.Application.UseCases.Attendees.Delete
         public ResponseRegisteredEventJson Execute(Guid id)
         {
             var entity = _dbContext.Attendees.Find(id) 
+
+
                 ?? throw new NotFoundException(ExceptionMsg.NotFoundAttendees);
             _dbContext.Attendees.Remove(entity);
             _dbContext.SaveChanges();

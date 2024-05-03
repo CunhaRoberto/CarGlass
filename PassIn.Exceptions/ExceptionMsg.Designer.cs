@@ -61,7 +61,7 @@ namespace PassIn.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Participante não localizado.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Not Found Attendee.
         /// </summary>
         public static string NotFoundAttendees {
             get {
