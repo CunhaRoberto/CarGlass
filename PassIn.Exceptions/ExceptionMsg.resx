@@ -120,4 +120,7 @@
   <data name="NotFoundAttendees" xml:space="preserve">
     <value>Not Found Attendee</value>
   </data>
+  <data name="NotFoundEvents" xml:space="preserve">
+    <value>Not Foun Event</value>
+  </data>
 </root>

@@ -68,5 +68,14 @@ namespace PassIn.Exceptions {
                 return ResourceManager.GetString("NotFoundAttendees", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Not Foun Event.
+        /// </summary>
+        public static string NotFoundEvents {
+            get {
+                return ResourceManager.GetString("NotFoundEvents", resourceCulture);
+            }
+        }
     }
 }
