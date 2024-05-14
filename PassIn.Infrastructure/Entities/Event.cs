@@ -4,7 +4,7 @@
     {
         
 
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Title { get; set; } = string.Empty;
         public string Details { get; set; } = string.Empty;
         public string Slug { get; set; } = string.Empty;
