@@ -10,10 +10,10 @@ namespace PassIn.Application.UseCases.Events.Register
     {
         private readonly PassInDbContext _dbContext;
 
-        public RegisterAttendeesUseCase()
-        {
-            _dbContext = new PassInDbContext();
-        }
+       public RegisterAttendeesUseCase()
+       {
+           _dbContext = new PassInDbContext();
+       }
         public ResponseRegisteredAttendeeEventJson Execute(Guid eventId,RequestRegisterAttendessJson request)
         {           
 

@@ -9,7 +9,7 @@ namespace PassIn.Application.UseCases.Events.Register
     {
         private readonly PassInDbContext _dbContext;
 
-        public RegisterEventsUseCase()
+        public RegisterEventsUseCase() 
         {
             _dbContext = new PassInDbContext();
         }

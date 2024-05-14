@@ -1,9 +1,13 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PassIn.Api.Fiters;
+using PassIn.Infrastructure;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -18,9 +22,6 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 
-    var xmlFile = "PassIn.Api.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    c.IncludeXmlComments(xmlPath);
 });
 
 builder.Services.AddMvc(option => option.Filters.Add(typeof(ExceptionFilter)));
