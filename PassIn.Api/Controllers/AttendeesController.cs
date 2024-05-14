@@ -73,7 +73,7 @@ namespace PassIn.Api.Controllers
         [ProducesResponseType(typeof(ResponseDelEventJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
 
-        public IActionResult DeleteAttendeesById([FromRoute] Guid id)
+        public IActionResult DeleteAttendeesById([FromRoute] string id)
         {
             var useCase = new DeleteAttendeesByIdUseCase();
             var response = useCase.Execute(id);

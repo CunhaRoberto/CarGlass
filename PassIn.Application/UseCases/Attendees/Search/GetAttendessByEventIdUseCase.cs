@@ -19,7 +19,7 @@ namespace PassIn.Application.UseCases.Events.Search
          
             var responseEvents = result.Select(entity => new ResponseAttendeeJson
             {
-                Id = entity.Id,
+                Id = entity.Id.ToString(),
                 Name = entity.Name, 
                 Email = entity.Email,   
                 CreatedAt = entity.Created_At

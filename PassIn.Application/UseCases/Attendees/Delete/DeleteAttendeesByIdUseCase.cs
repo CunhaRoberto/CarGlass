@@ -16,7 +16,7 @@ namespace PassIn.Application.UseCases.Attendees.Delete
         {
             _dbContext = new PassInDbContext();
         }
-        public ResponseRegisteredEventJson Execute(Guid id)
+        public ResponseRegisteredEventJson Execute(string id)
         {
             var entity = _dbContext.Attendees.Find(id) ?? throw new NotFoundException(ExceptionMsg.NotFoundAttendees);
             _dbContext.Attendees.Remove(entity);
@@ -24,7 +24,7 @@ namespace PassIn.Application.UseCases.Attendees.Delete
 
             return new ResponseRegisteredEventJson
             {
-                Id = entity.Id,
+                Id = entity.Id.ToString(),
             };
         }
     }
