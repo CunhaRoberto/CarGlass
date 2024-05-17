@@ -12,7 +12,7 @@ namespace PassIn.Infrastructure
 
         protected override void OnConfiguring(
              DbContextOptionsBuilder optionsBuilder)
-               => optionsBuilder.UseNpgsql(connectionString: "Server=dpg-cp38umol6cac73f1uee0-a.oregon-postgres.render.com;Database=rcunha_db;UserId=rcunha_db;Password=TGJjUP5mTPRRHXGHccRMPlxingF0SbWN;");
+               => optionsBuilder.UseNpgsql(connectionString: "User ID=rcunha_db;Password=TGJjUP5mTPRRHXGHccRMPlxingF0SbWN;Host=dpg-cp38umol6cac73f1uee0-a.oregon-postgres.render.com;Port=5432;Database=rcunha_db;");
 
 
     }
