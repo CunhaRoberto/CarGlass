@@ -12,7 +12,8 @@ namespace PassIn.Infrastructure
 
         protected override void OnConfiguring(
              DbContextOptionsBuilder optionsBuilder)
-               => optionsBuilder.UseSqlServer(connectionString: "Server = tcp:rcunha.database.windows.net, 1433; Initial Catalog = cunha_database; Persist Security Info=False;User ID = rcunha_db; Password=Rgf980711;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;");      
-   
+               => optionsBuilder.UseNpgsql(connectionString: "postgres://rcunha_db:TGJjUP5mTPRRHXGHccRMPlxingF0SbWN@dpg-cp38umol6cac73f1uee0-a.oregon-postgres.render.com/rcunha_db");
+
+
     }
   }

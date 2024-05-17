@@ -24,7 +24,7 @@ namespace PassIn.Application.UseCases.Attendees.Delete
 
             return new ResponseRegisteredEventJson
             {
-                Id = entity.Id.ToString(),
+                Id = entity.Id,
             };
         }
     }
