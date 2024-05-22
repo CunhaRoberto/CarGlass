@@ -2,9 +2,9 @@
 
 namespace PassIn.Application.UseCases.Events.Search
 {
-    internal class EventResponse : List<ResponseEventJson>
+    internal class EventResponse : List<ResponseJson>
     {
-        public List<ResponseEventJson> Events { get; set; }
+        public List<ResponseJson> Events { get; set; }
         public int Total { get; set; }
     }
 }

@@ -4,40 +4,19 @@ using PassIn.Communication.Responses;
 using PassIn.Exceptions;
 using PassIn.Infrastructure;
 using PassIn.Infrastructure.Entities;
+using System.Reflection.Metadata.Ecma335;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PassIn.Application.UseCases.Events.Search
 {
-    public class GetEventByIdUseCase
+    public class GetDividersUseCase 
     {
-        private readonly PassInDbContext _dbContext;    
-        public GetEventByIdUseCase()
+        public List<int> Execute(int number)
         {
-            _dbContext = new PassInDbContext();           
+            List<int> Dividers = Enumerable.Range(1, number)
+                                 .Where(x => number % x == 0)
+                                 .ToList();
+            return Dividers;      
         }
-        public ResponseEventJson Execute(Guid id)
-        {
-           
-            var entity = _dbContext.Events.Find(id);
-            var attendeesNumber = "";
-
-            if (entity is null)
-            {
-                throw new NotFoundException("An events with id dont exist.");
-            }
-            return new ResponseEventJson
-            {
-                Id = entity.Id,
-                Title = entity.Title,
-                Details = entity.Details,
-                Slug = entity.Slug,
-                MaximumAttendees = entity.Maximum_Attendees,
-                AttendeesAmount = 0,
-                Created_At =entity.Created_At,
-                Updated_At =entity.Updated_At,
-                
-            };
-        }
-        
-
     }
 }
