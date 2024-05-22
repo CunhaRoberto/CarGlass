@@ -24,7 +24,7 @@ namespace PassIn.Application.UseCases.Events.Search
 
             foreach (var evento in entities)
             {
-                var attendeesAmount = _dbContext.Attendees.Count(participante => participante.Event_Id.Equals(evento.Id));
+                
 
                 responseEvents.Add(new ResponseEventJson
                 {
@@ -32,8 +32,7 @@ namespace PassIn.Application.UseCases.Events.Search
                     Title = evento.Title,
                     Details = evento.Details,
                     Slug = evento.Slug,
-                    MaximumAttendees = evento.Maximum_Attendees,
-                    AttendeesAmount = attendeesAmount, 
+                    MaximumAttendees = evento.Maximum_Attendees,                    
                     Created_At = evento.Created_At,
                     Updated_At = evento.Updated_At,
                 });

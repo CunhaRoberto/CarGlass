@@ -2,6 +2,7 @@
 using PassIn.Communication.Responses;
 using PassIn.Exceptions;
 using PassIn.Infrastructure;
+using System.Net.Mail;
 
 namespace PassIn.Application.UseCases.Events.Register
 {
@@ -29,8 +30,19 @@ namespace PassIn.Application.UseCases.Events.Register
 
             };
 
-            _dbContext.Events.Add(entity);  
-            _dbContext.SaveChanges();
+            _dbContext.Events.Add(entity);
+
+            try
+            {
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+                throw new ErrorOrValidationExcepition("Unable to connect to the database!.");
+            }
+
+           
+           
 
             return new ResponseRegisteredEventJson 
             { 

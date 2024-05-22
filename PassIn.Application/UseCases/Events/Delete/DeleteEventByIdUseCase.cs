@@ -19,12 +19,7 @@ namespace PassIn.Application.UseCases.Events.Delete
             {
                 throw new NotFoundException("Event with the specified id does not exist.");
             }
-
-            var attendeesNumber = _dbContext.Attendees.Count(attendees => attendees.Event_Id == id);
-            if(attendeesNumber > 0)
-            {
-                throw new ConflictException($"Event has {attendeesNumber} registered attendees");
-            }
+                       
 
             _dbContext.Events.Remove(entity);
             _dbContext.SaveChanges();

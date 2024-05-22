@@ -18,7 +18,7 @@ namespace PassIn.Application.UseCases.Events.Search
         {
            
             var entity = _dbContext.Events.Find(id);
-            var attendeesNumber = _dbContext.Attendees.Count(attendees => attendees.Event_Id == id);
+            var attendeesNumber = "";
 
             if (entity is null)
             {
@@ -31,7 +31,7 @@ namespace PassIn.Application.UseCases.Events.Search
                 Details = entity.Details,
                 Slug = entity.Slug,
                 MaximumAttendees = entity.Maximum_Attendees,
-                AttendeesAmount = attendeesNumber,
+                AttendeesAmount = 0,
                 Created_At =entity.Created_At,
                 Updated_At =entity.Updated_At,
                 

@@ -2,7 +2,6 @@
 using PassIn.Application.UseCases.Events.Delete;
 using PassIn.Application.UseCases.Events.Register;
 using PassIn.Application.UseCases.Events.Search;
-using PassIn.Application.UseCases.Events.Update;
 using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
 
@@ -98,26 +97,7 @@ namespace PassIn.Api.Controllers
                
         }
 
-        /// <summary>
-        /// Update an event by id.
-        /// </summary>
-        /// <remarks>
-        /// Example:
-        /// { "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"}
-        /// </remarks>
-        /// <returns> Returns the data of the updated event.</returns>
-        [HttpPut]
-        [Route("{id}")]
-        [ProducesResponseType(typeof(ResponseDelEventJson), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
-
-        public IActionResult UpdateEventById([FromQuery ] RequestUpdateEventJson request, [FromRoute] Guid id)
-        {
-            var useCase = new UpdateEventByIdUseCase();
-            var response = useCase.Execute(id, request);
-
-            return Ok("Successfully updated!");
-
-        }
+       
+        
     }
 }
