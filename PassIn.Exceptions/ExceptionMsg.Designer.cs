@@ -61,6 +61,15 @@ namespace PassIn.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The number is invalid.
+        /// </summary>
+        public static string ErrorOrValidationNumberExcepition {
+            get {
+                return ResourceManager.GetString("ErrorOrValidationNumberExcepition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Not Found Attendee.
         /// </summary>
         public static string NotFoundAttendees {
