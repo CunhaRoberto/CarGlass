@@ -4,6 +4,6 @@ public class PassInExeption : SystemException
 {
     public PassInExeption(string message) : base(message)
     {
-        
+
     }
 }

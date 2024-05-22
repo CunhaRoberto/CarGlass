@@ -2,9 +2,9 @@
 {
     public class ConflictException : PassInExeption
     {
-        public ConflictException(string message) : base(message)        
+        public ConflictException(string message) : base(message)
         {
-            
+
         }
     }
 }

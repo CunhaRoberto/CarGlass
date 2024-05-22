@@ -1,8 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PassIn.Api.Fiters;
 using PassIn.Infrastructure;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +16,10 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "PassIn.Api",
         Version = "v1",
-        Contact = new OpenApiContact { 
+        Contact = new OpenApiContact
+        {
             Name = "Roberto Cunha",
-            Email = "rcunha@live.com"            
+            Email = "rcunha@live.com"
         }
     });
 

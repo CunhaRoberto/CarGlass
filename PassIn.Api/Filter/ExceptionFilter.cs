@@ -4,24 +4,25 @@ using PassIn.Communication.Responses;
 using PassIn.Exceptions;
 using System.Net;
 
-namespace PassIn.Api.Fiters 
+namespace PassIn.Api.Fiters
 {
     public class ExceptionFilter : IExceptionFilter
     {
         public void OnException(ExceptionContext context)
         {
-           var result = context.Exception is PassInExeption;
+            var result = context.Exception is PassInExeption;
 
             if (result)
             {
-               HandleProjectException(context);
-            }else
+                HandleProjectException(context);
+            }
+            else
             {
                 ThrowUnkonError(context);
             }
         }
 
-        
+
         private void HandleProjectException(ExceptionContext context)
         {
             if (context.Exception is NotFoundException)

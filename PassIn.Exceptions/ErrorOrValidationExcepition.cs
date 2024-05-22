@@ -2,9 +2,9 @@
 {
     public class ErrorOrValidationExcepition : PassInExeption
     {
-        public ErrorOrValidationExcepition (string message) : base(message) 
+        public ErrorOrValidationExcepition(string message) : base(message)
         {
-            
+
         }
     }
 }
