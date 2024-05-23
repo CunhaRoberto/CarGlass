@@ -4,7 +4,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /main
-COPY ["PassIn.Api/CarGlass.Api.csproj", "PassIn.Api.Api/"]
+COPY ["PassIn.Api/CarGlass.Api.csproj", "PassIn.Api/"]
 RUN dotnet restore "PassIn.Api/CarGlass.Api.csproj"
 COPY . .
 
