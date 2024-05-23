@@ -5,7 +5,7 @@ using PassIn.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<PassInDbContext>();
+
 
 
 
@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "PassIn.Api",
+        Title = "CarGlass.Api",
         Version = "v1",
         Contact = new OpenApiContact
         {

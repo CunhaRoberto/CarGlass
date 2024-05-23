@@ -9,6 +9,7 @@ namespace Test.CarGlass
         [InlineData(45,  "", new int[] { 1, 3, 5, 9, 15, 45 })]
         [InlineData(-1, "The number is invalid", new int[] { })]
         [InlineData(0, "The zero is invalid", new int[] { })]
+        [InlineData(10000, "limit number is 10000", new int[] { })]
 
         public void VerificaNumeroEntradaBemComoDivisores(int number, string msg, int[] resultado)         
         {
@@ -27,5 +28,7 @@ namespace Test.CarGlass
 
             
         }
+
+
     }
 }

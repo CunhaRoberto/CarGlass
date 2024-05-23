@@ -70,6 +70,15 @@ namespace PassIn.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Limit number is 10000.
+        /// </summary>
+        public static string ErrorOrValidationNumberLimitExcepition {
+            get {
+                return ResourceManager.GetString("ErrorOrValidationNumberLimitExcepition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The number zero is invalid.
         /// </summary>
         public static string ErrorOrValidationZeroExcepition {

@@ -120,6 +120,9 @@
   <data name="ErrorOrValidationNumberExcepition" xml:space="preserve">
     <value>Negative number is invalid</value>
   </data>
+  <data name="ErrorOrValidationNumberLimitExcepition" xml:space="preserve">
+    <value>Limit number is 10000</value>
+  </data>
   <data name="ErrorOrValidationZeroExcepition" xml:space="preserve">
     <value>The number zero is invalid</value>
   </data>

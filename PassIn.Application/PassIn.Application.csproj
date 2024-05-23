@@ -8,11 +8,8 @@
 
   <ItemGroup>
     <Compile Remove="UseCases\NovaPasta1\**" />
-    <Compile Remove="UseCases\NovaPasta\**" />
     <EmbeddedResource Remove="UseCases\NovaPasta1\**" />
-    <EmbeddedResource Remove="UseCases\NovaPasta\**" />
     <None Remove="UseCases\NovaPasta1\**" />
-    <None Remove="UseCases\NovaPasta\**" />
   </ItemGroup>
 
   <ItemGroup>
