@@ -1,36 +1,45 @@
 ﻿using PassIn.Communication.Responses;
 using PassIn.Exceptions;
+using System.Numerics;
 
 namespace PassIn.Application.UseCases.Events.Search
 {
     public class GetDividersUseCase
     {
-        public List<ResponseDividerJson> Execute(int number)
+        public ResponseDividerJson Execute(int number)
         {
-            Validate(number);
+            var responseDividers = new ResponseDividerJson();
 
-            var responseDividers = new List<ResponseDividerJson>();
+           
 
-            List<int> dividers = Enumerable.Range(1, number)
-                .Where(x => number % x == 0)
-                .ToList();
+                Validate(number);
 
-            responseDividers.Add(new ResponseDividerJson
-            {
-                TotalDividers = dividers.Count,
-                DividersList = dividers,
-            });
-            return responseDividers;
+                List<int> dividers = Enumerable.Range(1, number)
+                    .Where(x => number % x == 0)
+                    .ToList();
+
+
+                responseDividers.TotalDividers = dividers.Count;
+                responseDividers.DividersList = dividers;
+
+                return responseDividers;
+            
         }
 
         private static void Validate(int number)
-        {
-            if (number < 1)
-            {
+        {            
+            
+            if (number < 0)
+            {                
                 throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationNumberExcepition);
             }
 
+            if (number == 0)
+            {
+                throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationZeroExcepition);
+            }
 
         }
+        
     }
 }

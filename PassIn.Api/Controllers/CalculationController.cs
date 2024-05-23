@@ -10,7 +10,7 @@ namespace PassIn.Api.Controllers
     {
         [HttpGet]
         [Route("{number}")]
-        [ProducesResponseType(typeof(List<ResponseDividerJson>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseDividerJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
         public IActionResult GetDividers([FromRoute] int number)
         {

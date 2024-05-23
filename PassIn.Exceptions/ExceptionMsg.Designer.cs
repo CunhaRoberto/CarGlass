@@ -61,11 +61,20 @@ namespace PassIn.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a The number is invalid.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Negative number is invalid.
         /// </summary>
         public static string ErrorOrValidationNumberExcepition {
             get {
                 return ResourceManager.GetString("ErrorOrValidationNumberExcepition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The number zero is invalid.
+        /// </summary>
+        public static string ErrorOrValidationZeroExcepition {
+            get {
+                return ResourceManager.GetString("ErrorOrValidationZeroExcepition", resourceCulture);
             }
         }
         
