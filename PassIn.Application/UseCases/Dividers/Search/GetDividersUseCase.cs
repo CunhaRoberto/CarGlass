@@ -8,7 +8,7 @@ namespace PassIn.Application.UseCases.Events.Search
 {
     public class GetDividersUseCase
     {
-        public ResponseDividerJson Execute(int number)
+        public static ResponseDividerJson Execute(int number)
         {
             var responseDividers = new ResponseDividerJson();
 

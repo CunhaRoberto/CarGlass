@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PassIn.Application\CarGlass.Application.csproj" />
+    <ProjectReference Include="..\PassIn.Infrastructure\CarGlass.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

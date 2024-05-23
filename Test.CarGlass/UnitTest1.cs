@@ -17,7 +17,7 @@ namespace Test.CarGlass
 
             try
             {
-                var response = useCase.Execute(number);
+                var response = GetDividersUseCase.Execute(number);
                 Assert.Equal(resultado,response.DividersList);
             }
             catch (ErrorOrValidationExcepition e)
