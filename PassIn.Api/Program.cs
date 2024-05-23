@@ -1,6 +1,5 @@
 using Microsoft.OpenApi.Models;
 using PassIn.Api.Fiters;
-using PassIn.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

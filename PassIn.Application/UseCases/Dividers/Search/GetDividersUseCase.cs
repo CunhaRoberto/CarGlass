@@ -1,8 +1,6 @@
 ﻿using CarGlass.Exceptions;
 using PassIn.Communication.Responses;
 using PassIn.Exceptions;
-using System.Numerics;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PassIn.Application.UseCases.Events.Search
 {
@@ -24,7 +22,7 @@ namespace PassIn.Application.UseCases.Events.Search
             responseDividers.TotalDividers = dividers.Count;
             responseDividers.DividersList = dividers;
             responseDividers.CousinList = (dividers.Where(IsPrime).ToList());
-            
+
             return responseDividers;
 
         }
@@ -43,8 +41,9 @@ namespace PassIn.Application.UseCases.Events.Search
             }
 
             if (number > 10000)
-            { 
-                throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationNumberLimitExcepition); }
+            {
+                throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationNumberLimitExcepition);
+            }
         }
 
 
