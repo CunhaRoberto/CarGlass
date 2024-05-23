@@ -11,7 +11,7 @@ COPY . .
 RUN dotnet build "CarGlass.Api/CarGlass.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "CarGlass.Api/CarGlass.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish "CarGlass.Api/PassIn.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
