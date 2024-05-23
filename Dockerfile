@@ -4,11 +4,11 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /main
-COPY ["CarGlass.Api/CarGlass.Api.csproj", "CarGlass.Api/"]
-RUN dotnet restore "CarGlass.Api/CarGlass.Api.csproj"
+COPY ["CarGlass.Api/PassIn.Api.csproj", "CarGlass.Api/"]
+RUN dotnet restore "CarGlass.Api/PassIn.Api.csproj"
 COPY . .
 
-RUN dotnet build "CarGlass.Api/CarGlass.Api.csproj" -c Release -o /app/build
+RUN dotnet build "CarGlass.Api/PassIn.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "CarGlass.Api/PassIn.Api.csproj" -c Release -o /app/publish
