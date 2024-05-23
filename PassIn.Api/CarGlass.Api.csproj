@@ -26,9 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PassIn.Application\PassIn.Application.csproj" />
-    <ProjectReference Include="..\PassIn.Communication\PassIn.Communication.csproj" />
-    <ProjectReference Include="..\PassIn.Exceptions\PassIn.Exceptions.csproj" />
+    <ProjectReference Include="..\PassIn.Application\CarGlass.Application.csproj" />
+    <ProjectReference Include="..\PassIn.Communication\CarGlass.Communication.csproj" />
+    <ProjectReference Include="..\PassIn.Exceptions\CarGlass.Exceptions.csproj" />
   </ItemGroup>
 
 </Project>
