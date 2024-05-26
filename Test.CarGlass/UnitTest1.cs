@@ -9,9 +9,7 @@ namespace Test.CarGlass
         [Theory]
         [InlineData(12, new int[] { 1, 2, 3, 4, 6, 12 }, new int[] { 2, 3 })]
         [InlineData(45, new int[] { 1, 3, 5, 9, 15, 45 }, new int[] { 3, 5 })]
-        //[InlineData(-1, "The number is invalid", new int[] { })]
-        //[InlineData(0, "The zero is invalid", new int[] { })]
-        //[InlineData(10000, "limit number is 10000", new int[] { })]
+     
 
         public void CheckListDividersAndListDividersPrimes(int number, int[] expectedDividersList, int[] expectedDivisoresPrimeNumberList)
         {
