@@ -1,28 +1,29 @@
-﻿using CarGlass.Exceptions;
+﻿using CarGlass.Application.UseCases;
+using CarGlass.Application.UseCases.Funtion;
+using CarGlass.Exceptions;
 using PassIn.Communication.Responses;
 using PassIn.Exceptions;
 
-namespace PassIn.Application.UseCases.Events.Search
+namespace PassIn.Application.UseCases.Search
 {
-    public class GetDividersIsCousinUseCase
+    public class GetDividersIsPrimeNumbernUseCase
     {
-        public List<ResponseDividerIsCousinJson> Execute(int number)
+        public List<ResponseDividerIsPrimeNumberJson> Execute(int number)
         {
-
-
+            
             Validate(number);
 
             List<int> dividers = Enumerable.Range(1, number)
                 .Where(x => number % x == 0)
                 .ToList();
 
-            var responseDividers = new List<ResponseDividerIsCousinJson>();
+            var responseDividers = new List<ResponseDividerIsPrimeNumberJson>();
             foreach (var evento in dividers)
             {
-                responseDividers.Add(new ResponseDividerIsCousinJson
+                responseDividers.Add(new ResponseDividerIsPrimeNumberJson
                 {
                     Dividers = evento,
-                    Cousin = IsPrime(evento)
+                    PrimeNumber = PrimeNumbersVerifier.IsPrimeNumber(evento)
                 });
             }
 
@@ -42,16 +43,5 @@ namespace PassIn.Application.UseCases.Events.Search
         }
 
 
-
-        static bool IsPrime(int number)
-        {
-            if (number <= 1) return false;
-
-            for (int i = 2; i <= Math.Sqrt(number); i++)
-            {
-                if (number % i == 0) return false;
-            }
-            return true;
-        }
     }
 }

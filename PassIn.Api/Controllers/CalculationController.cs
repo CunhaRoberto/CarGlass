@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PassIn.Application.UseCases.Events.Search;
+using PassIn.Application.UseCases.Search;
 using PassIn.Communication.Responses;
 
 namespace PassIn.Api.Controllers
@@ -23,12 +23,12 @@ namespace PassIn.Api.Controllers
 
 
         [HttpGet]
-        [Route("dividers/iscousin/{number}")]
-        [ProducesResponseType(typeof(ResponseDividerIsCousinJson), StatusCodes.Status200OK)]
+        [Route("dividers/prime-number/{number}")]
+        [ProducesResponseType(typeof(ResponseDividerIsPrimeNumberJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-        public IActionResult GetDividersIsCousin([FromRoute] int number)
+        public IActionResult GetDividersIsPrimeNumber([FromRoute] int number)   
         {
-            var useCase = new GetDividersIsCousinUseCase();
+            var useCase = new GetDividersIsPrimeNumbernUseCase();
             var response = useCase.Execute(number);
             return Ok(response);
         }

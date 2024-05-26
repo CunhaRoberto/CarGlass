@@ -1,15 +1,15 @@
-﻿using CarGlass.Exceptions;
+﻿using CarGlass.Application.UseCases.Funtion;
+using CarGlass.Exceptions;
 using PassIn.Communication.Responses;
 using PassIn.Exceptions;
 
-namespace PassIn.Application.UseCases.Events.Search
+namespace PassIn.Application.UseCases.Search
 {
     public class GetDividersUseCase
     {
         public static ResponseDividerJson Execute(int number)
         {
             var responseDividers = new ResponseDividerJson();
-
 
 
             Validate(number);
@@ -21,7 +21,7 @@ namespace PassIn.Application.UseCases.Events.Search
 
             responseDividers.TotalDividers = dividers.Count;
             responseDividers.DividersList = dividers;
-            responseDividers.CousinList = (dividers.Where(IsPrime).ToList());
+            responseDividers.PrimeDividersList = (dividers.Where(PrimeNumbersVerifier.IsPrimeNumber).ToList());
 
             return responseDividers;
 
@@ -30,33 +30,12 @@ namespace PassIn.Application.UseCases.Events.Search
         private static void Validate(int number)
         {
 
-            if (number < 0)
-            {
-                throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationNumberExcepition);
-            }
+            if (number < 0) throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationNumberExcepition);
 
-            if (number == 0)
-            {
-                throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationZeroExcepition);
-            }
+            if (number == 0) throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationZeroExcepition);
 
-            if (number > 10000)
-            {
-                throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationNumberLimitExcepition);
-            }
-        }
-
-
-
-        static bool IsPrime(int number)
-        {
-            if (number <= 1) return false;
-
-            for (int i = 2; i <= Math.Sqrt(number); i++)
-            {
-                if (number % i == 0) return false;
-            }
-            return true;
+            if (number > 10000) throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationNumberLimitExcepition);
         }
     }
+
 }
