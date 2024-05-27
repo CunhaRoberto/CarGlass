@@ -1,8 +1,5 @@
-﻿using CarGlass.Application.UseCases;
-using CarGlass.Application.UseCases.Funtion;
-using CarGlass.Exceptions;
+﻿using CarGlass.Application.UseCases.Funtion;
 using PassIn.Communication.Responses;
-using PassIn.Exceptions;
 
 namespace PassIn.Application.UseCases.Search
 {
@@ -10,8 +7,8 @@ namespace PassIn.Application.UseCases.Search
     {
         public List<ResponseDividerIsPrimeNumberJson> Execute(int number)
         {
-            
-            Validate(number);
+
+            Validate.ValidateNumber(number);
 
             List<int> dividers = Enumerable.Range(1, number)
                 .Where(x => number % x == 0)
@@ -26,22 +23,7 @@ namespace PassIn.Application.UseCases.Search
                     PrimeNumber = PrimeNumbersVerifier.IsPrimeNumber(evento)
                 });
             }
-
-
             return responseDividers;
-
         }
-
-        private static void Validate(int number)
-        {
-
-            if (number < 0) throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationNumberExcepition);
-
-            if (number == 0) throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationZeroExcepition);
-
-            if (number > 10000) throw new ErrorOrValidationExcepition(ExceptionMsg.ErrorOrValidationNumberLimitExcepition);
-        }
-
-
     }
 }

@@ -26,7 +26,7 @@ namespace PassIn.Api.Controllers
         [Route("dividers/prime-number/{number}")]
         [ProducesResponseType(typeof(ResponseDividerIsPrimeNumberJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-        public IActionResult GetDividersIsPrimeNumber([FromRoute] int number)   
+        public IActionResult GetDividersIsPrimeNumber([FromRoute] int number)
         {
             var useCase = new GetDividersIsPrimeNumbernUseCase();
             var response = useCase.Execute(number);

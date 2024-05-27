@@ -1,10 +1,8 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace CarGlass.Application.UseCases.Funtion
+﻿namespace CarGlass.Application.UseCases.Funtion
 {
-    public class PrimeNumbersVerifier 
+    public static class PrimeNumbersVerifier
     {
-        public static bool IsPrimeNumber(int number)      
+        public static bool IsPrimeNumber(int number)
         {
             if (number <= 1) return false;
 
@@ -15,7 +13,7 @@ namespace CarGlass.Application.UseCases.Funtion
             return true;
         }
 
-      
+
 
     }
 }
